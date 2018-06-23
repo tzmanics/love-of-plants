@@ -1,0 +1,2 @@
+endpoint: tantor.db.elephantsql.com:5432
+datamodel: datamodel.graphql
