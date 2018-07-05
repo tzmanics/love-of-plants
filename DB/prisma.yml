@@ -1,2 +1,2 @@
-endpoint: tantor.db.elephantsql.com:5432
+endpoint: https://us1.prisma.sh/tzmanics/love-of-plants-DB/dev
 datamodel: datamodel.graphql

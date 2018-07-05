@@ -1,4 +1,27 @@
-type User {
+type Plant {
+  createdAt: DateTime!
+  fertilizerInfo: FertilizerInfo
   id: ID! @unique
-  name: String!
+  imageUrl: String
+  location: String
+  info: PlantInfo
+  waterInfo: WaterInfo
+}
+
+type WaterInfo {
+  lastWatered: DateTime
+  waterDays: Int!
+}
+
+type FertilizerInfo {
+  fertilizerDays: Int
+  lastFertilized: DateTime
+}
+
+type PlantInfo {
+  description: String
+  family: String
+  name: String
+  sunlight: String
+  tips: String
 }
