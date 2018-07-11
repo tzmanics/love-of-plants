@@ -1,23 +1,54 @@
-# The following types define the data model of the example service
-# based on which the GraphQL API is generated
-
-type User @model {
+type Plant @model {
+  createdAt: DateTime!
+  description: String
+  family: String
   id: ID! @isUnique
+  imageUrl: String
+  location: String
   name: String
-  dateOfBirth: DateTime
+  tips: String
 
-  # Uncomment below - you can declare relations between models like this
-
-  # posts: [Post!]! @relation(name: "UserPosts")
+  fertilizerInfo: [FertilizerInfo!]! @relation(name: "PlantFertilizer")
+  lightInfo: [LightInfo!]! @relation(name: "PlantLight")
+  waterInfo: [WaterInfo!]! @relation(name: "PlantWater")
 }
 
+type FertilizerInfo @model {
+  fertilizerFrequency: Int
+  id: ID! @isUnique
+  lastFertilized: DateTime!
 
-# Uncomment the model below as well
+  plant: Plant! @relation(name: "PlantFertilizer")
+}
 
-# type Post @model {
-#   id: ID! @isUnique
-#   title: String!
-#
-#   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
-#   author: User! @relation(name: "UserPosts")
-# }
+type LightInfo @model {
+  id: ID! @isUnique
+  lightLevel: Int
+  lightNeeds: Int
+
+  plant: Plant! @relation(name: "PlantLight")
+}
+
+type WaterInfo @model {
+  id: ID! @isUnique
+  lastWatered: DateTime!
+  waterFrequency: Int
+
+  plant: Plant! @relation(name: "PlantWater")
+}
+
+## type user @model {
+##   id: ID! @isUnique
+##   name: String
+##   dateOfBirth: DateTime
+## 
+##   posts: [Post!]! @relation(name: "UserPosts")
+## }
+
+## type Post @model {
+##   id: ID! @isUnique
+##   title: String!
+## 
+##   # Every relation also required a back-relation (to determine 1:1, 1:n or n:m)
+##   author: User! @relation(name: "UserPosts")
+## }
