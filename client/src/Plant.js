@@ -20,32 +20,40 @@ const styles = {
 }
 
 const Plant = ({
-  text,
-  owner,
-  done,
-  disabled,
-  onDoneClick
+  family,
+  fertilizerFrequency,
+  imageUrl,
+  lastFertilized,
+  lastWatered,
+  lightAmount,
+  lightNeeds,
+  location,
+  name,
+  tips,
+  waterFrequency,
+  onWaterClick
 }) => (
   <div style={styles.container}>
-    <input
-      checked={done}
-      onChange={onDoneClick}
-      disabled={disabled}
-      type="checkbox"
-    />
     <div style={styles.meta}>
-      <span>{text}</span>
-      <span style={styles.owner}>{owner}</span>
+      <span>{name}</span>
+      <span style={styles.owner}>{location}</span>
     </div>
   </div>
 );
 
 Plant.propTypes = {
-  text: PropTypes.string, // from enhancer (flattenProp)
-  owner: PropTypes.string, // from enhancer (flattenProp)
-  done: PropTypes.bool, // from enhancer (flattenProp)
-  disabled: PropTypes.bool, // from enhancer (flattenProp)
-  onDoneClick: PropTypes.func.isRequired, // from enhancer (withHandlers)
+  family: PropTypes.string, // from enhancer (flattenProp)
+  fertilizerFrequency: PropTypes.number, // from enhancer (flattenProp)
+  imageUrl: PropTypes.string, // from enhancer (flattenProp)
+  lastFertilized: PropTypes.object, // from enhancer (flattenProp)
+  lastWatered: PropTypes.object, // from enhancer (flattenProp)
+  lightAmount: PropTypes.number, // from enhancer (flattenProp)
+  lightNeeds: PropTypes.number, // from enhancer (flattenProp)
+  location: PropTypes.string, // from enhancer (flattenProp)
+  name: PropTypes.string, // from enhancer (flattenProp)
+  tips: PropTypes.string, // from enhancer (flattenProp)
+  waterFrequency: PropTypes.number, // from enhancer (flattenProp)
+  onWaterClick: PropTypes.func,
   firestore: PropTypes.shape({
     update: PropTypes.func.isRequired
   })
@@ -54,15 +62,16 @@ Plant.propTypes = {
 const enhance = compose(
   // Add props.firestore
   withFirestore,
-  // Flatten todo prop (creates id, text, owner, done and disabled props)
   flattenProp('plant'),
   // Handlers as props
   withHandlers({
-    onDoneClick: props => () => {
-      return props.firestore.update(`plants/${props.id}`, { done: !props.done })
+    onWaterClick: props => () => {
+      return props.firestore.update(
+        `plants/${props.id}`, { lastWatered: new Date() }
+      )
     }
   }),
-  // Prevent unnessesary re-renders by doing shallow comparison of props
+  // Prevent unnecessary re-renders by doing shallow comparison of props
   pure
 )
 

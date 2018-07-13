@@ -1,9 +1,9 @@
 import { createStore, compose } from 'redux'
 import { reduxFirestore } from 'redux-firestore'
-import firebase from 'firebase/app'
-import 'firebase/database'
-import 'firebase/auth'
-import 'firebase/firestore'
+import firebase from 'firebase'
+import 'firebase/database/dist/index.cjs'
+import 'firebase/auth/dist/index.cjs'
+import 'firebase/firestore/dist/index.cjs'
 import { fbConfig } from './config'
 import rootReducer from './reducer'
 
