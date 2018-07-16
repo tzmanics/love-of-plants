@@ -7,7 +7,7 @@ import { withFirestore } from './utils';
 import Plant from './Plant';
 import NewPlant from './NewPlant';
 
-const Plants = ({ plants, onNewSubmit, onDoneClick }) => (
+const Plants = ({ plants, onNewSubmit, onWaterClick }) => (
   <div>
     <NewPlant onNewSubmit={onNewSubmit} />
     {
@@ -36,8 +36,8 @@ Plants.propTypes = {
 
 const listenerSettings = {
   collection: 'plants',
-  orderBy: ['createdAt', 'desc'],
-  limit: 10
+  orderBy: ['location'],
+  limit: 20
 }
 
 // Create HOC that loads data and adds it as plants prop
@@ -50,7 +50,6 @@ const enhance = compose(
     onNewSubmit: props => newPlant =>
       props.firestore.add('plants', {
         ...newPlant,
-        owner: 'Anonymous',
         createdAt: props.firestore.FieldValue.serverTimestamp()
       }),
   }),
