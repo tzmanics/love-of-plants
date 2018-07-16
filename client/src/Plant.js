@@ -5,10 +5,16 @@ import { withFirestore } from './utils';
 
 const styles = {
   container: {
-    display: 'flex',
     alignItems: 'center',
-    margin: '2rem',
-    border: '1px solid grey'
+    border: '1px solid lightgrey',
+    float: 'left',
+    display: 'flex',
+    margin: '1rem',
+    padding: '.25rem',
+    width: '200px'
+  },
+  image: {
+    width: '200px'
   },
   owner: {
     fontSize: '.6rem'
@@ -35,8 +41,9 @@ const Plant = ({
 }) => (
   <div style={styles.container}>
     <div style={styles.meta}>
-      <span>{name}</span>
-      <span style={styles.owner}>{location}</span>
+      <img src={imageUrl} alt={name} style={styles.image}/>
+      <h3>{name}</h3>
+      <h5 style={styles.owner}>{location}</h5>
     </div>
   </div>
 );

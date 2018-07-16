@@ -15,7 +15,7 @@ const store = createStore();
 const App = () => (
   <Provider store={store}>
     <div style={styles}>
-      <h2>Start editing to see some magic happen {'\u2728'}</h2>
+      <h2>LOVE OF PLANTS</h2>
       <Plants />
     </div>
   </Provider>
