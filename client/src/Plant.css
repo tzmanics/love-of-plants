@@ -1,0 +1,18 @@
+.container {
+  border: 1px solid lightgrey;
+  float: left;
+  display: flex;
+  height: 500px;
+  margin: 1em;
+  overflow: scroll;
+  padding: .25em;
+  text-align: left;
+  width: 300px;
+}
+img {
+  width: 230px;
+  height: 300px;
+}
+ul {
+  list-style-type: none;
+}
